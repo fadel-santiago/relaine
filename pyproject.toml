@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "relaine-workflow-agent"
+version = "0.1.0"
+description = "RELAINE R1 local AI workflow proposal engine"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fastapi>=0.115",
+    "langchain-ollama>=0.2",
+    "langgraph>=0.2",
+    "langgraph-checkpoint-sqlite>=2.0",
+    "pydantic>=2.8",
+    "uvicorn>=0.30",
+]
+
+[project.scripts]
+relaine = "relaine.cli:main"
+relaine-control = "relaine.approval_cli:main"
+relaine-api = "relaine.api_server:main"
+
+[dependency-groups]
+dev = [
+    "httpx>=0.27",
+    "pytest>=8.0",
+]
+
+[tool.pytest.ini_options]
+addopts = "-m 'not ollama'"
+testpaths = ["tests"]
+markers = [
+    "ollama: runs real inference against a locally installed Ollama model",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/relaine"]

@@ -1,0 +1,32 @@
+__pycache__/
+.pytest_cache/
+.venv/
+*.py[cod]
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+.envrc
+*.key
+*.pem
+
+# Runtime data
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+
+# Test, type-checker, and coverage output
+.coverage
+.coverage.*
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+
+# Python packaging output
+build/
+dist/
+*.egg-info/

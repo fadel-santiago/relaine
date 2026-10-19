@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="dark">
+    <meta name="description" content="Review and decide RELAINE task proposals locally.">
+    <title>RELAINE · Workflow review</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <main class="shell">
+      <header class="masthead">
+        <a class="brand" href="/" aria-label="RELAINE workflow review home">
+          <span class="brand-mark" aria-hidden="true">R</span>
+          <span>
+            <strong>RELAINE</strong>
+            <small>Workflow review</small>
+          </span>
+        </a>
+        <div class="local-badge">
+          <span aria-hidden="true"></span>
+          Local session
+        </div>
+      </header>
+
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow">Controlled business actions</p>
+        <h1 id="page-title">Turn a request into a reviewed action.</h1>
+        <p class="intro-copy">
+          Describe one task operation. RELAINE proposes the action; nothing changes
+          until you review its exact parameters and approve it.
+        </p>
+      </section>
+
+      <div class="workspace">
+        <section class="panel request-panel" aria-labelledby="request-title">
+          <div class="panel-heading">
+            <span class="step">01</span>
+            <div>
+              <p class="kicker">Business request</p>
+              <h2 id="request-title">What should happen?</h2>
+            </div>
+          </div>
+
+          <form id="request-form">
+            <label for="business-request">Request</label>
+            <textarea
+              id="business-request"
+              name="request"
+              rows="7"
+              maxlength="10000"
+              required
+              placeholder="Create a task titled Prepare the launch brief"
+            ></textarea>
+            <div class="form-footer">
+              <p>Supported actions: create task or update task status.</p>
+              <button class="primary-button" id="submit-button" type="submit">
+                <span>Generate proposal</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel proposal-panel" aria-labelledby="proposal-title">
+          <div class="panel-heading">
+            <span class="step">02</span>
+            <div>
+              <p class="kicker">Review</p>
+              <h2 id="proposal-title">Proposal details</h2>
+            </div>
+            <span id="status-badge" class="status-badge" data-state="idle">Idle</span>
+          </div>
+
+          <div id="empty-state" class="empty-state">
+            <div class="empty-glyph" aria-hidden="true">⌁</div>
+            <p>Your validated proposal will appear here.</p>
+          </div>
+
+          <div id="proposal-content" class="proposal-content" hidden>
+            <dl class="proposal-grid">
+              <div>
+                <dt>Action</dt>
+                <dd id="proposal-action">—</dd>
+              </div>
+              <div>
+                <dt>Proposal ID</dt>
+                <dd id="proposal-id" class="mono">—</dd>
+              </div>
+              <div class="wide">
+                <dt>Validated parameters</dt>
+                <dd><pre id="proposal-parameters">—</pre></dd>
+              </div>
+              <div class="wide">
+                <dt>Explanation</dt>
+                <dd id="proposal-rationale">—</dd>
+              </div>
+              <div class="wide">
+                <dt>Fingerprint</dt>
+                <dd id="proposal-fingerprint" class="mono fingerprint">—</dd>
+              </div>
+            </dl>
+
+            <div id="decision-actions" class="decision-actions" hidden>
+              <button class="secondary-button reject-button" id="reject-button" type="button">
+                Reject
+              </button>
+              <button class="primary-button" id="approve-button" type="button">
+                Approve exact proposal
+              </button>
+            </div>
+          </div>
+
+          <section id="outcome" class="outcome" aria-labelledby="outcome-title" hidden>
+            <p class="kicker" id="outcome-title">Outcome</p>
+            <p id="outcome-message"></p>
+            <pre id="outcome-data" hidden></pre>
+          </section>
+
+          <p id="live-status" class="sr-only" role="status" aria-live="polite"></p>
+        </section>
+      </div>
+
+      <section class="panel history-panel" aria-labelledby="history-title">
+        <div class="panel-heading history-heading">
+          <span class="step">03</span>
+          <div>
+            <p class="kicker">Execution history</p>
+            <h2 id="history-title">Proposal lifecycle</h2>
+          </div>
+          <span id="history-summary" class="history-summary">No proposal</span>
+        </div>
+        <p id="history-state" class="history-state" role="status" aria-live="polite">
+          Submit or restore a proposal to view its recorded lifecycle.
+        </p>
+        <ol id="history-list" class="history-list" aria-label="Proposal audit events" hidden></ol>
+      </section>
+
+      <section class="panel tasks-panel" aria-labelledby="tasks-title">
+        <div class="panel-heading tasks-heading">
+          <span class="step">04</span>
+          <div>
+            <p class="kicker">Persisted work</p>
+            <h2 id="tasks-title">Tasks</h2>
+          </div>
+          <span id="task-count" class="task-count">—</span>
+          <button
+            class="secondary-button refresh-button"
+            id="refresh-tasks-button"
+            type="button"
+            aria-controls="task-list"
+          >
+            Refresh
+          </button>
+        </div>
+        <p id="tasks-state" class="tasks-state" role="status" aria-live="polite">
+          Loading persisted tasks…
+        </p>
+        <ul id="task-list" class="task-list" aria-label="Persisted tasks" hidden></ul>
+      </section>
+
+      <footer>
+        <span>Human approval required</span>
+        <span aria-hidden="true">•</span>
+        <span>Actions execute through the protected local workflow</span>
+      </footer>
+    </main>
+  </body>
+</html>
