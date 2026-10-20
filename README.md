@@ -18,6 +18,20 @@
 
 ---
 
+## See RELAINE in action
+
+These are genuine captures of the running local application, using the installed `gpt-oss:20b` model and a separate synthetic SQLite demonstration database—not UI mockups.
+
+**1. AI proposal, awaiting human approval**
+
+![RELAINE interface showing a validated AI-generated task proposal and approval controls](docs/assets/01-ai-proposal.png)
+
+**2. Approved execution, persistent task and audit history**
+
+![RELAINE interface showing an approved action, resulting persisted task and audit events](docs/assets/02-approved-execution.png)
+
+---
+
 ## The problem
 
 Businesses want AI to help process operational requests, but an AI-generated instruction is **not** permission to change business data. A useful workflow agent needs to explain its proposed action, wait for human review, execute only what was authorized, and retain a reliable record of what happened—even after interruptions.
